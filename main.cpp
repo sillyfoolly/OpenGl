@@ -244,48 +244,48 @@
 //    return 0;
 // }
 
-#include <GL/glut.h>
-
-void RenderScene(void) {
-   glClear(GL_COLOR_BUFFER_BIT);
-   glColor3f(0.27f, 1.0f, 0.95f);
-   glRectf(-20.0f, 20.0f, -10.0f, 10.0f);
-   glRectf(-10.0f, 20.0f, 10.f, 10.0f);
-   glRectf(-20.0f, 10.0f, -10.0f, -10.0f);
-   glRectf(-20.0f, -20.0f, 10.0f, -30.0f);
-   glRectf(-10.0f, 0.0f, 10.0f, -10.0f);
-   glRectf(0.0f, -10.0f, 10.0f, -20.0f);
-   glColor3f(0.0f, 1.0f, 0.0f);
-   glRectf(0.0f, 0.0f, 10.0f, -10.0f);
-   glFlush();
-}
-
-void SetupRC(void) {
-   glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-}
-
-void ChangeSize(GLsizei w, GLsizei h) {
-   GLfloat aspectRatio;
-   if (h == 0)
-       h = 1;
-   glViewport(0, 0, w, h);
-   glMatrixMode(GL_PROJECTION);
-   glLoadIdentity();
-   aspectRatio = (GLfloat)w / (GLfloat)h;
-   if (w <= h)
-       glOrtho(-40.0, 40.0, -40.0 / aspectRatio, 40.0 / aspectRatio, 1.0, -1.0);
-   else
-       glOrtho(-40.0 * aspectRatio, 40.0 * aspectRatio, -40.0, 40.0, 1.0, -1.0);
-   glMatrixMode(GL_MODELVIEW);
-   glLoadIdentity();
-}
-
-int main(int argc, char** argv) {
-   glutInit(&argc, argv);
-   glutCreateWindow("Gromyko Andrey");
-   glutDisplayFunc(RenderScene);
-   glutReshapeFunc(ChangeSize);
-   SetupRC();
-   glutMainLoop();
-   return 0;
-}
+// #include <GL/glut.h>
+// 
+// void RenderScene(void) {
+//    glClear(GL_COLOR_BUFFER_BIT);
+//    glColor3f(0.27f, 1.0f, 0.95f);
+//    glRectf(-20.0f, 20.0f, -10.0f, 10.0f);
+//    glRectf(-10.0f, 20.0f, 10.f, 10.0f);
+//    glRectf(-20.0f, 10.0f, -10.0f, -10.0f);
+//    glRectf(-20.0f, -20.0f, 10.0f, -30.0f);
+//    glRectf(-10.0f, 0.0f, 10.0f, -10.0f);
+//    glRectf(0.0f, -10.0f, 10.0f, -20.0f);
+//    glColor3f(0.0f, 1.0f, 0.0f);
+//    glRectf(0.0f, 0.0f, 10.0f, -10.0f);
+//    glFlush();
+// }
+// 
+// void SetupRC(void) {
+//    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+// }
+// 
+// void ChangeSize(GLsizei w, GLsizei h) {
+//    GLfloat aspectRatio;
+//    if (h == 0)
+//        h = 1;
+//    glViewport(0, 0, w, h);
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
+//    aspectRatio = (GLfloat)w / (GLfloat)h;
+//    if (w <= h)
+//        glOrtho(-40.0, 40.0, -40.0 / aspectRatio, 40.0 / aspectRatio, 1.0, -1.0);
+//    else
+//        glOrtho(-40.0 * aspectRatio, 40.0 * aspectRatio, -40.0, 40.0, 1.0, -1.0);
+//    glMatrixMode(GL_MODELVIEW);
+//    glLoadIdentity();
+// }
+// 
+// int main(int argc, char** argv) {
+//    glutInit(&argc, argv);
+//    glutCreateWindow("Gromyko Andrey");
+//    glutDisplayFunc(RenderScene);
+//    glutReshapeFunc(ChangeSize);
+//    SetupRC();
+//    glutMainLoop();
+//    return 0;
+// }
