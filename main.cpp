@@ -244,6 +244,7 @@
 //    return 0;
 // }
 
+//region TASK7
 // #include <GL/glut.h>
 // 
 // void RenderScene(void) {
