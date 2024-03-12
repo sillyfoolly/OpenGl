@@ -1,4 +1,4 @@
-// region TASK1
+#pragma region LAB1_1
 // подключаем заголовочные файлы библиотек
 // #include <GL/glut.h>
 // 
@@ -23,9 +23,9 @@
 //    glutMainLoop();
 //    return 0;
 // }
-// endregion
+#pragma endregion LAB1_1
 
-//region TASK2
+#pragma region LAB1_2
 // #include <GL/glut.h>
 // 
 // void RenderScene(void)
@@ -54,9 +54,9 @@
 // 
 //    return 0;
 // }
-//endregion
+#pragma endregion LAB1_2
 
-//region TASK3
+#pragma region LAB1_3
 // #include <GL/glut.h>
 // 
 // void RenderScene(void) 
@@ -94,9 +94,9 @@
 //    glutMainLoop();
 //    return 0;
 // }
-//endregion
+#pragma endregion LAB1_3
 
-//region TASK4
+#pragma region LAB1_4
 // #include <GL/glut.h>
 // 
 // void RenderScene(void) 
@@ -141,9 +141,9 @@
 // 
 //    return 0;
 // }
-//endregion
+#pragma endregion LAB1_4
 
-//region TAKS5
+#pragma region LAB1_5
 // #include <GL/glut.h>
 // 
 // void RenderScene(void) 
@@ -191,9 +191,9 @@
 // 
 //    return 0;
 // }
-//endregion
+#pragma endregion LAB1_5
 
-// region TASK6
+#pragma region LAB1_6
 // #include <GL/glut.h>
 // 
 // void RenderScene(void) 
@@ -245,8 +245,9 @@
 // 
 //    return 0;
 // }
+#pragma endregion LAB1_6
 
-//region TASK7
+#pragma region LAB1_7
 // #include <GL/glut.h>
 
 // void RenderScene(void) {
@@ -293,41 +294,176 @@
 //    glutMainLoop();
 //    return 0;
 // }
-//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+#pragma endregion LAB1_7
 
-//region LAB2_1
+#pragma region LAB2_1
+// #include <GL/glut.h>
+// #include "math.h"
+
+// GLfloat astep = 0.0f;
+// GLfloat angle; GLfloat y; GLfloat x;
+
+// void RenderScene(void)
+// {
+//     glClear(GL_COLOR_BUFFER_BIT);
+//     glColor3f(0.0f, 1.0f, 0.0f);
+//     glBegin(GL_LINE_LOOP);
+//     for(angle = 0.0f; angle <= 3.14*2; angle += (3.14 / 2.0f))
+//     {
+//         x = 50 * cos(angle + astep);
+//         y = 50 * sin(angle + astep);
+//         glVertex3f(x, y, 0.0f);
+//     }
+//     glEnd();
+//     glFlush();
+//     glutSwapBuffers();
+// }
+
+// void TimerFunction(int value)
+// {
+//     if (astep < 3.14*2) astep += 0.2f;
+//     else astep = 0.2f;
+//     glutPostRedisplay();
+//     glutTimerFunc(75, TimerFunction, 1);
+// }
+
+// void SetupRC(void)
+// {
+//     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+// }
+
+// void ChangeSize(GLsizei w, GLsizei h) {
+//    GLfloat aspectRatio;
+//    if (h == 0) h = 1;
+//    glViewport(0, 0, w, h);
+//    glMatrixMode(GL_PROJECTION);
+//    glLoadIdentity();
+//    aspectRatio = (GLfloat)w / (GLfloat)h;
+//    if (w <= h)
+//       glOrtho(-100.0, 100.0, -100.0 / aspectRatio, 100.0 / aspectRatio, 1.0, -1.0);
+//    else
+//       glOrtho(-100.0 * aspectRatio, 100.0 * aspectRatio, -100.0, 100.0, 1.0, -1.0);
+//    glMatrixMode(GL_MODELVIEW);
+//    glLoadIdentity();
+// }
+
+// int main(int argc, char** argv)
+// {
+//     glutInit(&argc, argv);
+//     glutCreateWindow("Gromyko Andrey");
+//     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+//     glutDisplayFunc(RenderScene);
+//     glutReshapeFunc(ChangeSize);
+//     glutTimerFunc(75, TimerFunction, 1);
+//     SetupRC();
+//     glutMainLoop();
+//     return 0;
+// }
+#pragma endregion
+
+#pragma region LAB2_2
 #include <GL/glut.h>
 #include "math.h"
-GLfloat astep = 0.0f;
-GLfloat angle; GLfloat y; GLfloat x;
+
+GLfloat angle; GLfloat y; GLfloat x; GLfloat astep;
+
 void RenderScene(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.0f, 1.0f, 0.0f);
-    glBegin(GL_LINE_LOOP);
-    for(angle = 0.0f; angle <= 3.14*2; angle += (3.14 / 2.0f))
-    {
-        x = 50 * cos(angle + astep);
-        y = 50 * sin(angle + astep);
 
-        glVertex3f(x, y, 0.0f);
+    glBegin(GL_POLYGON);
+    glColor3f(0.40f, 0.20f, 0.0f);
+    for(angle = 0.0f; angle <= 3.14; angle += (3.14 / 62.8f))
+    {
+        x = 35 * cos(angle);
+        y = 35 * sin(angle);
+        glVertex3f(x, y + 55, 0.0f);
+    }
+    glVertex3f(x, -90, 0.0f);
+    glVertex3f(35, -90, 0.0f);
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glColor3f(0.90f, 0.60f, 0.0f);
+    glVertex3f(x - 5, y + 20, 0.0f);
+    glVertex3f(x + 75, y + 20, 0.0f);
+    glVertex3f(x + 75, y + 25, 0.0f);
+    glVertex3f(x - 5, y + 25, 0.0f);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    glColor3f(1.0f, 0.90f, 0.70f);
+    for(angle = 0.0f; angle <= 3.14 * 2; angle += (3.14 / 62.8f))
+    {
+        x = 25 * cos(angle);
+        y = 25 * sin(angle);
+        glVertex3f(x, y + 55, 0.0f);
     }
     glEnd();
+
+    glEnable(GL_LINE_STIPPLE);
+    glLineStipple(2, 0x00ff);
+    glLineWidth(3.0f);
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    for(angle = 0.0f; angle <= 3.14 * 2; angle += (3.14 / 62.8f))
+    {
+        x = 23 * cos(angle);
+        y = 23 * sin(angle);
+        glVertex3f(x, y + 55, 0.0f);
+    }
+    glEnd();
+    glDisable(GL_LINE_STIPPLE);
+
+    glLineWidth(1.5f);
+    glBegin(GL_LINES);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(0, 55, 0.0f);
+    glVertex3f(20 * cos(angle + astep), 20 * sin(angle + astep) + 55, 0.0f);
+    glVertex3f(0, 55, 0.0f);
+    glVertex3f(x - 10, y + 50, 0.0f);
+    glEnd();
+
+    glShadeModel(GL_SMOOTH);
+    glBegin(GL_TRIANGLE_STRIP);
+    glColor3f(0.0f, 0.5f, 1.0f);
+    glVertex3f(-30, -72, 0.0f);
+    glColor3f(0.60f, 0.87f, 1.0f);
+    glVertex3f(-15, 15, 0.0f);
+    glVertex3f(0, -60, 0.0f);
+    glVertex3f(15, 15, 0.0f);
+    glColor3f(0.0f, 0.5f, 1.0f);
+    glVertex3f(30, -72, 0.0f);
+    glEnd();
+
+    glLineWidth(1.1f);
+    glBegin(GL_LINE_STRIP);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glVertex3f(0, 15, 0.0f);
+    glVertex3f(5, -35, 0.0f);
+    glVertex3f(10, -48, 0.0f);
+    glVertex3f(2, -50, 0.0f);
+    glVertex3f(5, -35, 0.0f);
+    glEnd();
+
     glFlush();
-    glutSwapBuffers();
 }
+
 void TimerFunction(int value)
 {
     if (astep < 3.14*2) astep += 0.2f;
     else astep = 0.2f;
     glutPostRedisplay();
-    glutTimerFunc(75, TimerFunction, 1);
+    glutTimerFunc(1000, TimerFunction, 1);
 }
+
 void SetupRC(void)
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(1.0f, 0.97f, 0.90f, 0.0f);
 }
-void ChangeSize(GLsizei w, GLsizei h) {
+
+void ChangeSize(GLsizei w, GLsizei h) 
+{
    GLfloat aspectRatio;
    if (h == 0) h = 1;
    glViewport(0, 0, w, h);
@@ -341,15 +477,19 @@ void ChangeSize(GLsizei w, GLsizei h) {
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
 }
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
+    glutInitWindowPosition(10, 10);
+    glutInitWindowSize(500, 500);
     glutCreateWindow("Gromyko Andrey");
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutDisplayFunc(RenderScene);
     glutReshapeFunc(ChangeSize);
-    glutTimerFunc(75, TimerFunction, 1);
+    glutTimerFunc(1000, TimerFunction, 1);
     SetupRC();
     glutMainLoop();
     return 0;
 }
+#pragma endregion LAB2_2
