@@ -248,7 +248,7 @@
 
 //region TASK7
 // #include <GL/glut.h>
-// 
+
 // void RenderScene(void) {
 //    glClear(GL_COLOR_BUFFER_BIT);
 //    glColor3f(0.27f, 1.0f, 0.95f);
@@ -262,11 +262,11 @@
 //    glRectf(0.0f, 0.0f, 10.0f, -10.0f);
 //    glFlush();
 // }
-// 
+
 // void SetupRC(void) {
 //    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 // }
-// 
+
 // void ChangeSize(GLsizei w, GLsizei h) {
 //    GLfloat aspectRatio;
 //    if (h == 0)
@@ -282,7 +282,7 @@
 //    glMatrixMode(GL_MODELVIEW);
 //    glLoadIdentity();
 // }
-// 
+
 // int main(int argc, char** argv) {
 //    glutInit(&argc, argv);
 //    glutCreateWindow("Gromyko Andrey");
@@ -296,95 +296,59 @@
 //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 //region LAB2_1
-// подключаем заголовочные файлы библиотек
 #include <GL/glut.h>
-// Исходное положение и размер прямоугольника
-GLfloat x1 = 0.0f; GLfloat y1 = 0.0f; GLfloat rsize = 25;
-// Величина шага в направлениях х и у (число пиксе-лей,
-// на которые на каждом шаге перемещается прямоуголь-ник)
-GLfloat xstep = 1.0f; GLfloat ystep = 1.0f;
-// Отслеживание изменений ширины и высоты окна
-GLfloat windowWidth; GLfloat windowHeight;
-//Вызывается для рисования сцены
+#include "math.h"
+GLfloat astep = 0.0f;
+GLfloat angle; GLfloat y; GLfloat x;
 void RenderScene(void)
 {
-    // Очищаем окно, используя текущий цвет очист-ки
     glClear(GL_COLOR_BUFFER_BIT);
-    // В качестве текущего цвета рисования задает красный //RGB
-    glColor3f(1.0f, 0.0f, 0.0f);
-    // Рисует прямоугольник, закрашенный текущим цветом
-    glRectf(x1, y1, x1 + rsize, y1 - rsize);
-    // Очищает очередь текущих команд и переключает буферы
+    glColor3f(0.0f, 1.0f, 0.0f);
+    glBegin(GL_LINE_LOOP);
+    for(angle = 0.0f; angle <= 3.14*2; angle += (3.14 / 2.0f))
+    {
+        x = 50 * cos(angle + astep);
+        y = 50 * sin(angle + astep);
+
+        glVertex3f(x, y, 0.0f);
+    }
+    glEnd();
+    glFlush();
     glutSwapBuffers();
 }
-
-//Вызывается библиотекой GLUT в холостом состоянии (окно не меняет размера и не перемещается)
 void TimerFunction(int value)
 {
-    // Меняет направление на противоположное при подходе
-    // к левому или правому краю
-    if (x1 > windowWidth - rsize || x1 < -windowWidth)
-    xstep = -xstep;
-    // Меняет направление на противоположное при подходе
-    // к верхнему или нижнему краю
-    if (y1 > windowHeight || y1 < -windowHeight + rsize)
-    ystep = -ystep;
-    // Перемещает квадрат
-    x1 += xstep; y1 += ystep;
-    // Проверка границ. Если окно меньше прямо-угольника,
-    // который прыгает внутри, и прямоугольник об-наруживает
-    // себя вне нового объема отсечения
-    if (x1 > (windowWidth - rsize + xstep))
-    x1 = windowWidth - rsize - 1; else if (x1 < -(windowWidth + xstep)) x1 = -windowWidth - 1; if (y1 > (windowHeight + ystep))
-    y1 = windowHeight - 1; else if (y1 < -(windowHeight - rsize + ystep)) y1 = -windowHeight + rsize - 1;
-    // Перерисовывает сцену с новыми координатами
+    if (astep < 3.14*2) astep += 0.2f;
+    else astep = 0.2f;
     glutPostRedisplay();
-    glutTimerFunc(33, TimerFunction, 1);
+    glutTimerFunc(75, TimerFunction, 1);
 }
-
-//Задает состояние визуализации
 void SetupRC(void)
 {
-    // Устанавливает в качестве цвета очистки синий
-    glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 }
-
-//Вызывается библиотекой GLUT при изменении размеров окна
-void ChangeSize(GLsizei w, GLsizei h)
-{
-    GLfloat aspectRatio;
-    // Предотвращает деление на нуль
-    if (h == 0) h = 1;
-    // Устанавливает поле просмотра с размерами ок-на
-    glViewport(0, 0, w, h);
-    // Обновляет систему координат
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    //С помощью плоскостей отсечения (левая, пра-вая, нижняя,
-    // верхняя, ближняя, дальняя) устанавливает объем отсечения
-    aspectRatio = (GLfloat)w / (GLfloat)h;
-    if (w <= h)
-    {
-        windowWidth = 100;
-        windowHeight = 100 / aspectRatio;
-        glOrtho(-100.0, 100.0, -windowHeight, windowHeight, 1.0, -1.0);
-    }
-    else
-    {
-        windowWidth = 100 * aspectRatio; windowHeight = 100;
-        glOrtho(-windowWidth, windowWidth, -100.0, 100.0, 1.0, -1.0);
-    }
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+void ChangeSize(GLsizei w, GLsizei h) {
+   GLfloat aspectRatio;
+   if (h == 0) h = 1;
+   glViewport(0, 0, w, h);
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   aspectRatio = (GLfloat)w / (GLfloat)h;
+   if (w <= h)
+      glOrtho(-100.0, 100.0, -100.0 / aspectRatio, 100.0 / aspectRatio, 1.0, -1.0);
+   else
+      glOrtho(-100.0 * aspectRatio, 100.0 * aspectRatio, -100.0, 100.0, 1.0, -1.0);
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
 }
-
-//Точка входа основной программы
 int main(int argc, char** argv)
 {
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); glutCreateWindow("Bounce");
+    glutInit(&argc, argv);
+    glutCreateWindow("Gromyko Andrey");
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutDisplayFunc(RenderScene);
     glutReshapeFunc(ChangeSize);
-    glutTimerFunc(33, TimerFunction, 1);
+    glutTimerFunc(75, TimerFunction, 1);
     SetupRC();
     glutMainLoop();
     return 0;
