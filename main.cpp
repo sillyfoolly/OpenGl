@@ -387,4 +387,5 @@ void main(int argc, char** argv)
     glutTimerFunc(33, TimerFunction, 1);
     SetupRC();
     glutMainLoop();
+    return 0;
 }
