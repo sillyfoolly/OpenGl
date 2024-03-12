@@ -379,7 +379,7 @@ void ChangeSize(GLsizei w, GLsizei h)
 }
 
 //Точка входа основной программы
-void main(int argc, char** argv)
+int main(int argc, char** argv)
 {
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); glutCreateWindow("Bounce");
     glutDisplayFunc(RenderScene);
