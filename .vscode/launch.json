@@ -12,6 +12,19 @@
       "environment": [],
       "externalConsole": true,
       "MIMode": "gdb",
+      "linux": {
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ]
+      },
+      "osx": {
+        "program": "${workspaceRoot}/Builds/Mac_Build/engine",
+        "MIMode": "lldb"
+      },
       "windows": {
         "program": "${workspaceRoot}/Builds/Win_Build/engine",
         "miDebuggerPath": "C:\\MinGw\\bin\\gdb.exe"
@@ -24,8 +37,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/GitHubShit/OpenGl",
-      "program": "d:/GitHubShit/OpenGl/build/Debug/outDebug",
+      "cwd": "c:/VSCode-OpenGL-Game-Engine-master",
+      "program": "c:/VSCode-OpenGL-Game-Engine-master/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

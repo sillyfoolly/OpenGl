@@ -1,6 +1,52 @@
 {
     "version": "2.0.0",
     "command": "g++",
+    "linux": {
+        "tasks": [
+            {
+                "taskName": "Build",
+                "suppressTaskName": true,
+                "isBuildCommand": true,
+                "args": [
+                    "-g",
+                    "-std=c++11",
+                    "main.cpp",
+                    "-o",
+                    "Builds/Linux_Build/engine",
+                    "-lGL",
+                    "-lGLEW",
+                    "-lGLU",
+                    "-lSDL2main",
+                    "-lSDL2",
+                    "-lSDL2_image",
+                    "-lSDL2_ttf"
+                ]
+            }
+        ]
+    },
+    "osx": {
+        "tasks": [
+            {
+                "taskName": "Build",
+                "suppressTaskName": true,
+                "isBuildCommand": true,
+                "args": [
+                    "-g",
+                    "-std=c++11",
+                    "main.cpp",
+                    "-o",
+                    "Builds/Mac_Build/engine",
+                    "-lGL",
+                    "-lGLEW",
+                    "-lGLU",
+                    "-lSDL2main",
+                    "-lSDL2",
+                    "-lSDL2_image",
+                    "-lSDL2_ttf"
+                ]
+            }
+        ]
+    },
     "windows": {
         "tasks": [
             {
