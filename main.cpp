@@ -1,128 +1,128 @@
 #pragma region LAB3_1
-#include <GL/glew.h>
-#include <GL/glut.h>
-#include "math.h"
+// #include <GL/glew.h>
+// #include <GL/glut.h>
+// #include "math.h"
 
-double rotate_y = 0;
-double rotate_x = 0;
-double a = 1;
-double r = (a*(sqrt(3)/6));
-double R = (a*(sqrt(3)/3));
-GLfloat v[4][3] = {{a/2, -r, r}, {-a/2, -r, r}, {0, -r, -R}, {0, R, 0}};
+// double rotate_y = 0;
+// double rotate_x = 0;
+// double a = 1;
+// double r = (a*(sqrt(3)/6));
+// double R = (a*(sqrt(3)/3));
+// GLfloat v[4][3] = {{a/2, -r, r}, {-a/2, -r, r}, {0, -r, -R}, {0, R, 0}};
 
-void display() {
-    // Очищаем буферы
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // Поворачиваем на угол
-    glRotatef(rotate_x, 1.0, 0.0, 0.0);
-    glRotatef(rotate_y, 0.0, 1.0, 0.0);
-    
-    // //низ
-    // glBegin(GL_POLYGON);
-    // glColor3f(1.0, 1.0, 0.0);
-    // glVertex3f(0.5, -0.3, 0.5);
-    // glVertex3f(0.5, -0.3, -0.5);
-    // glVertex3f(-0.5, -0.3, -0.5);
-    // glVertex3f(-0.5, -0.3, 0.5);
-    // glEnd();
+// void display() {
+//     // Очищаем буферы
+//     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // //Задаем грань куба 2
-    // glBegin(GL_POLYGON);
-    // glColor3f(1.0, 1.0, 1.0);
-    // glVertex3f(0.5, -0.3, 0.5);
-    // glVertex3f(0.5, -0.3, -0.5);
-    // glVertex3f(0, 0.5, 0);
-    // glEnd();
+//     // Поворачиваем на угол
+//     glRotatef(rotate_x, 1.0, 0.0, 0.0);
+//     glRotatef(rotate_y, 0.0, 1.0, 0.0);
 
-    // //Задаем грань куба 3
-    // glBegin(GL_POLYGON);
-    // glColor3f(1.0, 0.0, 1.0);
-    // glVertex3f(0.5, -0.3, -0.5);
-    // glVertex3f(-0.5, -0.3, -0.5);
-    // glVertex3f(0, 0.5, 0);
-    // glEnd();
+//     // //низ
+//     // glBegin(GL_POLYGON);
+//     // glColor3f(1.0, 1.0, 0.0);
+//     // glVertex3f(0.5, -0.3, 0.5);
+//     // glVertex3f(0.5, -0.3, -0.5);
+//     // glVertex3f(-0.5, -0.3, -0.5);
+//     // glVertex3f(-0.5, -0.3, 0.5);
+//     // glEnd();
 
-    // //Задаем грань куба 4
-    // glBegin(GL_POLYGON);
-    // glColor3f(0.0, 1.0, 0.0);
-    // glVertex3f(-0.5, -0.3, -0.5);
-    // glVertex3f(-0.5, -0.3, 0.5);
-    // glVertex3f(0, 0.5, 0);
-    // glEnd();
+//     // //Задаем грань куба 2
+//     // glBegin(GL_POLYGON);
+//     // glColor3f(1.0, 1.0, 1.0);
+//     // glVertex3f(0.5, -0.3, 0.5);
+//     // glVertex3f(0.5, -0.3, -0.5);
+//     // glVertex3f(0, 0.5, 0);
+//     // glEnd();
 
-    // //Задаем грань куба 5
-    // glBegin(GL_POLYGON);
-    // glColor3f(0.0, 0.0, 1.0);
-    // glVertex3f(-0.5, -0.3, 0.5);
-    // glVertex3f(0.5, -0.3, 0.5);
-    // glVertex3f(0, 0.5, 0);
-    // glEnd();
+//     // //Задаем грань куба 3
+//     // glBegin(GL_POLYGON);
+//     // glColor3f(1.0, 0.0, 1.0);
+//     // glVertex3f(0.5, -0.3, -0.5);
+//     // glVertex3f(-0.5, -0.3, -0.5);
+//     // glVertex3f(0, 0.5, 0);
+//     // glEnd();
 
-    //низ
-    glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 0.0);
-    glVertex3fv(v[0]);
-    glVertex3fv(v[2]);
-    glVertex3fv(v[1]);
-    glEnd();
+//     // //Задаем грань куба 4
+//     // glBegin(GL_POLYGON);
+//     // glColor3f(0.0, 1.0, 0.0);
+//     // glVertex3f(-0.5, -0.3, -0.5);
+//     // glVertex3f(-0.5, -0.3, 0.5);
+//     // glVertex3f(0, 0.5, 0);
+//     // glEnd();
 
-    //Задаем грань тетраэдора 1
-    glBegin(GL_POLYGON);
-    glColor3f(1.0, 1.0, 1.0);
-    glVertex3fv(v[0]);
-    glVertex3fv(v[1]);
-    glVertex3fv(v[3]);
-    glEnd();
+//     // //Задаем грань куба 5
+//     // glBegin(GL_POLYGON);
+//     // glColor3f(0.0, 0.0, 1.0);
+//     // glVertex3f(-0.5, -0.3, 0.5);
+//     // glVertex3f(0.5, -0.3, 0.5);
+//     // glVertex3f(0, 0.5, 0);
+//     // glEnd();
 
-    //Задаем грань тетраэдора 2
-    glBegin(GL_POLYGON);
-    glColor3f(0.0, 0.0, 1.0);
-    glVertex3fv(v[0]);
-    glVertex3fv(v[2]);
-    glVertex3fv(v[3]);
-    glEnd();
+//     //низ
+//     glBegin(GL_POLYGON);
+//     glColor3f(1.0, 1.0, 0.0);
+//     glVertex3fv(v[0]);
+//     glVertex3fv(v[2]);
+//     glVertex3fv(v[1]);
+//     glEnd();
 
-    //Задаем грань тетраэдора 3
-    glBegin(GL_POLYGON);
-    glColor3f(0.0, 1.0, 0.0);
-    glVertex3fv(v[2]);
-    glVertex3fv(v[1]);
-    glVertex3fv(v[3]);
-    glEnd();
-    
-    
-    glutSwapBuffers();
-}
+//     //Задаем грань тетраэдора 1
+//     glBegin(GL_POLYGON);
+//     glColor3f(1.0, 1.0, 1.0);
+//     glVertex3fv(v[0]);
+//     glVertex3fv(v[1]);
+//     glVertex3fv(v[3]);
+//     glEnd();
 
-void specialKeys(int key, int x, int y) {
-    // Меняем угол на 5 градусов
-    if (key == GLUT_KEY_RIGHT){
-        rotate_y = 5;
-        rotate_x = 0;}
-    else if (key == GLUT_KEY_LEFT){
-        rotate_y = -5;
-        rotate_x = 0;}
-    else if (key == GLUT_KEY_UP){
-        rotate_x = 5;
-        rotate_y = 0;}
-    else if (key == GLUT_KEY_DOWN){
-        rotate_x = -5;
-        rotate_y = 0;}
-    glutPostRedisplay();
-}
+//     //Задаем грань тетраэдора 2
+//     glBegin(GL_POLYGON);
+//     glColor3f(0.0, 0.0, 1.0);
+//     glVertex3fv(v[0]);
+//     glVertex3fv(v[2]);
+//     glVertex3fv(v[3]);
+//     glEnd();
+
+//     //Задаем грань тетраэдора 3
+//     glBegin(GL_POLYGON);
+//     glColor3f(0.0, 1.0, 0.0);
+//     glVertex3fv(v[2]);
+//     glVertex3fv(v[1]);
+//     glVertex3fv(v[3]);
+//     glEnd();
+
+//     glutSwapBuffers();
+// }
+
+// void specialKeys(int key, int x, int y) {
+//     // Меняем угол на 5 градусов
+//     if (key == GLUT_KEY_RIGHT){
+//         rotate_y = 5;
+//         rotate_x = 0;}
+//     else if (key == GLUT_KEY_LEFT){
+//         rotate_y = -5;
+//         rotate_x = 0;}
+//     else if (key == GLUT_KEY_UP){
+//         rotate_x = 5;
+//         rotate_y = 0;}
+//     else if (key == GLUT_KEY_DOWN){
+//         rotate_x = -5;
+//         rotate_y = 0;}
+//     glutPostRedisplay();
+// }
 
 
 
-int main(int argc, char** argv) {
-    glutInit(&argc, argv);
-    glutCreateWindow("Gromyko Andrey");
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glEnable(GL_DEPTH_TEST);
-    glutDisplayFunc(display);
-    glutSpecialFunc(specialKeys);
-    glutMainLoop();
-    return 0;
-}
+// int main(int argc, char** argv) {
+//     glutInit(&argc, argv);
+//     glutCreateWindow("Gromyko Andrey");
+//     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+//     glEnable(GL_DEPTH_TEST);
+//     glutDisplayFunc(display);
+//     glutSpecialFunc(specialKeys);
+//     glutMainLoop();
+//     return 0;
+// }
 #pragma endregion
 
 #pragma region LAB3_2
@@ -278,6 +278,7 @@ int main(int argc, char** argv) {
 //     // Движение источника света, после прорисовки солнца!
 //     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 //     // Поворот системы координат
+//     glRotatef(60, 0.0f, 0.0f, 1.0f); 
 //     glRotatef(fEarthRot, 0.0f, 1.0f, 0.0f);
 //     // Прорисовка Земли
 //     glColor3ub(0, 0, 255);
@@ -286,6 +287,8 @@ int main(int argc, char** argv) {
 //     // Поворот в системе координат, связанной с Землей
 //     // и изображение Луны
 //     glColor3ub(200, 200, 200);
+//     glRotatef(-fEarthRot, 0.0f, 1.0f, 0.0f);
+//     glRotatef(-105, 0.0f, 0.0f, 1.0f);
 //     glRotatef(fMoonRot, 0.0f, 1.0f, 0.0f);
 //     glTranslatef(30.0f, 0.0f, 0.0f);
 //     fMoonRot += 15.0f;
